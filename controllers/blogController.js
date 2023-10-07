@@ -1,4 +1,19 @@
+const winston = require("winston");
+
 const Blog = require("../models/blog");
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.printf(({ timestamp, level, message }) => {
+      return `${timestamp} [${level}]: ${message}`;
+    })
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "combined.log" }), // Log all messages to another file
+  ],
+});
 
 const blog_index = (req, res) => {
   Blog.find()
@@ -31,12 +46,14 @@ const blog_create_post = (req, res) => {
 
 const blog_details = (req, res) => {
   const id = req.params.id;
+  logger.info(`fetching blog with id ${id}`);
   Blog.findById(id)
     .then((result) => {
       res.render("blogs/details", { blog: result, title: "Blog Details" });
     })
     .catch((err) => {
-      res.status(404).render("404", {title: "Blog not found"})
+      logger.error(`An error occurred while fetching the blog with id ${id}`);
+      res.status(404).render("404", { title: "Blog not found" });
     });
 };
 
