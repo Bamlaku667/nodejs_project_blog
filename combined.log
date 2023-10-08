@@ -21,3 +21,10 @@ info: Blog app started
 2023-10-07T20:51:53.809Z [info]: Blog app started
 2023-10-07T20:52:10.934Z [info]: fetching blog with id 6521bb8fe900326db2742f0a
 2023-10-07T20:52:43.266Z [info]: Blog app started
+2023-10-07T20:55:58.156Z [info]: fetching blog with id 6521bb8fe900326db2742f0aa
+2023-10-07T20:55:58.164Z [error]: An error occurred while fetching the blog with id 6521bb8fe900326db2742f0aa
+2023-10-08T12:21:43.225Z [info]: Blog app started
+2023-10-08T12:23:17.553Z [info]: Blog app started
+2023-10-08T12:29:27.710Z [info]: Blog app started
+2023-10-08T12:30:02.844Z [info]: Blog app started
+2023-10-08T12:32:20.781Z [info]: Blog app started
