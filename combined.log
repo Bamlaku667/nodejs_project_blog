@@ -28,3 +28,22 @@ info: Blog app started
 2023-10-08T12:29:27.710Z [info]: Blog app started
 2023-10-08T12:30:02.844Z [info]: Blog app started
 2023-10-08T12:32:20.781Z [info]: Blog app started
+2023-10-08T12:39:09.036Z [info]: fetching blog with id 65229f03dcce1b5805fcc1f0
+2023-10-08T12:47:30.420Z [info]: Blog app started
+2023-10-09T03:50:36.919Z [error]: error connecting to the DB
+2023-10-09T04:02:45.246Z [error]: error connecting to the DB
+2023-10-09T04:06:22.955Z [error]: error connecting to the DB
+2023-10-09T04:07:27.505Z [error]: error connecting to the DB
+2023-10-09T04:14:27.797Z [info]: connecting to DB
+2023-10-09T04:16:14.894Z [info]: connecting to DB
+2023-10-09T04:17:55.657Z [info]: connecting to DB
+2023-10-09T04:18:44.975Z [info]: fetching blog with id 65237f072a2e2ec1a6e63597
+2023-10-09T04:21:33.889Z [info]: connecting to DB
+2023-10-09T04:21:47.530Z [info]: fetching blog with id 65237fd75c40eb42cd6c7f50
+2023-10-09T04:23:46.785Z [info]: connecting to DB
+2023-10-09T04:23:50.157Z [info]: fetching blog with id 65237ed20cf12eff31b68fc8
+2023-10-09T04:23:52.408Z [info]: blog with id 65237ed20cf12eff31b68fc8 deleted
+2023-10-09T04:24:23.228Z [info]: connecting to DB
+2023-10-09T04:24:26.213Z [info]: connecting to DB
+2023-10-09T04:24:30.704Z [info]: connecting to DB
+2023-10-09T04:24:37.058Z [info]: connecting to DB

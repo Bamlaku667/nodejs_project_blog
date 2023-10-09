@@ -1,38 +1,23 @@
 const express = require("express");
-// const morgan = require("morgan");
-const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
 const authRoutes = require("./routes/authRoutes");
-const winston = require("winston");
+const dotenv = require("dotenv");
+const connectToDB = require("./config/db");
+const {logger} = require("./utils/logger");
 
-
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.printf(({ timestamp, level, message }) => {
-      return `${timestamp} [${level}]: ${message}`;
-    })
-  ),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "combined.log" }), // Log all messages to another file
-  ],
-});
+dotenv.config();
 // express app
 const app = express();
 
 // connect to mongodb & listen for requests
-const dbURI =
-  "mongodb+srv://bamlakuhiruy:bam4774@cluster0.4x1rqqo.mongodb.net/blog_db?retryWrites=true&w=majority";
-
-mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => {
-    logger.info("Blog app started");
-    app.listen(8080);
+connectToDB().then(() => {
+  logger.info("connecting to DB");
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT}`)
   })
-  .catch((err) => console.log(err));
+}).catch((err) => {
+  console.log(err);
+})
 
 // register view engine
 app.set("view engine", "ejs");
