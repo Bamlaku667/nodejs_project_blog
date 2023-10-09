@@ -6,7 +6,7 @@ router.get('/signup', authController.user_sign_up_get);
 // router.get('/signup', authController.user_sign_up_post)
 
 
-
+router.post('/signup', authController.user_sign_up_post);
 
 
 
