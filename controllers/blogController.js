@@ -14,7 +14,7 @@ const blog_index = (req, res) => {
       console.log(err);
     });
 };
-
+ 
 const blog_create_get = (req, res) => {
   res.render("blogs/create", { title: "Create a new blog" });
 };
@@ -46,6 +46,7 @@ const blog_details = (req, res) => {
     });
 };
 
+
 const blog_delete = (req, res) => {
   const id = req.params.id;
 
@@ -58,6 +59,7 @@ const blog_delete = (req, res) => {
       console.log(err);
     });
 };
+
 
 module.exports = {
   blog_index,
