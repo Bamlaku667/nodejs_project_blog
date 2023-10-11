@@ -1,7 +1,7 @@
 const { body, check } = require("express-validator");
 
 const validateUserInputs = [
-  check("name").trim().isEmpty().withMessage("name is required"),
+  check("name").trim().isLength({min: 3}).withMessage("name is required"),
   check("email").trim().isEmail().withMessage("Invalid email adress"),
   check("password")
     .trim()

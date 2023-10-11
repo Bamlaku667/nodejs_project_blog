@@ -16,6 +16,9 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
+    token: {
+      type: String
+    }
   },
   { timestamps: true }
 );
