@@ -40,7 +40,7 @@ const user_sign_up_post = async (req, res) => {
       await newUser
         .save()
         .then((result) => {
-          res.redirect("user/signup");
+          res.redirect("signup");
         })
         .catch((err) => console.log(err));
     }

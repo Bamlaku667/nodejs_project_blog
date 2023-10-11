@@ -51,7 +51,7 @@ app.get("/about", (req, res) => {
 app.use("/blogs", blogRoutes);
 
 // auth routes
-app.use("/user", authRoutes);
+app.use("/auth", authRoutes);
 
 // 404 page
 app.use((req, res) => {
