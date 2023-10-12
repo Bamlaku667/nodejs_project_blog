@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { logger } = require("./logger");
 
 const hashData = async (data, saltRounds = 10) => {
   try {
@@ -6,10 +7,24 @@ const hashData = async (data, saltRounds = 10) => {
     // console.log(hashData);
     return hashedData;
   } catch (err) {
-    throw err;
+    console.log(err);
   }
 };
 
+
+
+
+const verifyData = async (unhashedData, hashedData) => {
+  try {
+    const match = await bcrypt.compare(unhashedData, hashedData);
+    return match;
+  }
+  catch (err) {
+    logger.info('error occurs', err);
+  }
+}
+
 module.exports = {
   hashData,
+  verifyData
 };

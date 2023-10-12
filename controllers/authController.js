@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const { validationResult, check } = require("express-validator");
-const { hashData } = require("../utils/hashData");
+const { hashData, verifyData } = require("../utils/hashData");
 const { logger } = require("../utils/logger");
 const flash = require("connect-flash");
 
@@ -86,9 +86,22 @@ const user_login_post = async (req, res) => {
     res.render("auth/login", { title: "login", alert });
   } else {
     try {
-      req.flash("success", "login successful");
-      res.redirect("/blogs");
-      // res.json(req.flash("success"));
+      // req.flash("success", "login successful");
+      // res.redirect("/blogs");
+      const hashedPassword = user.password;
+      const password = req.body.password;
+      const passwordMatch = await verifyData(password, hashedPassword);
+
+      if (!passwordMatch) {
+        res.render("auth/login", {
+          title: "login error",
+          errorMessage: req.flash("error"),
+        });
+      } else {
+        req.flash("success", "login sucessful");
+        res.redirect("/blogs");
+        console.log("successufl");
+      }
     } catch (err) {
       logger.error("error occurs", err);
     }
