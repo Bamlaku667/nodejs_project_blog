@@ -5,6 +5,9 @@ const dotenv = require("dotenv");
 const connectToDB = require("./config/db");
 const { logger } = require("./utils/logger");
 const { query, validationResult } = require("express-validator");
+const flash = require('connect-flash');
+const session = require("express-session");
+
 
 dotenv.config();
 // express app
@@ -28,6 +31,13 @@ app.set("view engine", "ejs");
 // middleware & static files
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+  secret: 'mySessionSecretData',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(flash());
 
 // routes
 app.get("/", (req, res) => {

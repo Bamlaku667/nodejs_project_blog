@@ -1,9 +1,8 @@
 const User = require("../models/user");
 const { validationResult, check } = require("express-validator");
 const { hashData } = require("../utils/hashData");
-const { emailValidation, passwordValidation } = require("../utils/validation");
-const validateUserInputs = require("../utils/validation");
 const { logger } = require("../utils/logger");
+const flash = require("connect-flash");
 
 const user_sign_up_get = async (req, res) => {
   res.render("auth/signup", { title: "sign up up " });
@@ -49,7 +48,7 @@ const user_sign_up_post = async (req, res) => {
         .catch((err) => console.log(err));
     }
   } catch (err) {
-    throw err;
+    logger.error("error occured", err);
   }
 };
 
@@ -69,29 +68,29 @@ const user_login_post = async (req, res) => {
   await Promise.all(validateLogin.map((validation) => validation.run(req)));
 
   const errors = validationResult(req);
+
+  // check the user based on his email
   const email = req.body.email;
   const user = await User.findOne({ email });
 
   // check if a user does  exist
   if (user == null) {
-    errors.errors.push({
-      value: req.body.email,
-      msg: "invalid credentials",
-      location: "body",
+    req.flash("error", "Invalid email or password");
+    res.render("auth/login", {
+      title: "login error",
+      errorMessage: req.flash("error"),
     });
   }
-
-  // check for any potential errors in the filling form
   if (!errors.isEmpty()) {
     const alert = errors.array();
-    console.log("error occurs");
-    // res.json(alert);
     res.render("auth/login", { title: "login", alert });
   } else {
     try {
-      console.log(user.email);
+      req.flash("success", "login successful");
+      res.redirect("/blogs");
+      // res.json(req.flash("success"));
     } catch (err) {
-      throw err;
+      logger.error("error occurs", err);
     }
   }
 };

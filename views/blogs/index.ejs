@@ -7,6 +7,13 @@
   <div class="blogs content">
     <h2>All Blogs</h2>
 
+    <% if(successMessage.length > 0) {%>
+      <div class="alert alert-primary" role="alert">
+        <%= successMessage[0]  %>
+      </div>      
+
+      <%} %>
+
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
         <a class="single" href="/blogs/<%= blog._id %>">

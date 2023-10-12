@@ -9,6 +9,13 @@
                     <%= title %>
                 </h2>
 
+                
+                <% if((typeof errorMessage != 'undefined') && errorMessage.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= errorMessage[0]%>
+                    </div>
+                <% } %>
+
                 <% if (typeof alert != 'undefined')  { %>
                     <% alert.forEach(function(err) { %>
                 <div class="alert alert-danger" role="alert">
