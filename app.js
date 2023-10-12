@@ -34,20 +34,13 @@ app.get("/", (req, res) => {
   res.redirect("/blogs");
 });
 
+//about-page
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
 
-// app.get("/user", query("person").notEmpty().escape(), (req, res) => {
-//   const result = validationResult(req);
-//   if (result.isEmpty()) {
-//     return res.send(`hello ${req.query.person}`);
-//   }
 
-//   res.send({errors: result.array()});
-// });
-// blog routes
-
+//blog routes
 app.use("/blogs", blogRoutes);
 
 // auth routes
